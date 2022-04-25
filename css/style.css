@@ -1,0 +1,486 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(250, 240, 227);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    font-size: 80%;
+    scroll-behavior: smooth;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+h2{
+    text-align: center;
+    margin: 20px 20px;
+    color: #1e5555;
+}
+
+/********************************************MENU*****************************/
+header #page_acceuil {
+    background-image: url(https://bm.dijon.fr/ui/skins/VDJN/images/PhotoBM/10.png);
+}
+
+.nav_1 .conne {
+    float: right;
+    list-style: none;
+    background-color: #1e5555;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    height: 50px;
+    margin: 10px 10px;
+}
+
+.nav_1 .conne li:hover {
+    background-color: white;
+    color: black;
+}
+
+.nav_1 .conne li a {
+    white-space: nowrap;
+    height: 20px;
+    line-height: 20px;
+    color: inherit;
+    text-decoration: inherit;
+
+
+}
+
+/**********************************MENU CENTRER************************************ */
+#menu {
+    margin-top: 300px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+#menu ul {
+    background-color: #1e5555;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: #2F4F4F;
+    height: 60px;
+    justify-content: center;
+}
+
+#menu ul li:hover {
+    background-color: white;
+    color: black;
+}
+
+#menu ul li a {
+    white-space: nowrap;
+    height: 20px;
+    line-height: 20px;
+    color: inherit;
+    text-decoration: inherit;
+
+}
+
+/************* SOUS MENU*********/
+#menu ul ul {
+    display: none;
+    background-color: #2F4F4F;
+}
+
+#menu ul li:hover ul {
+    display: block;
+
+}
+
+#menu ul ul li a {
+    width: 220px;
+    background-color: #1e5555;
+}
+
+#menu ul ul li a:hover {
+    background-color: white;
+    color: black;
+}
+
+
+/****************************LIVRES*************************************** */
+.contenues {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin: auto;
+}
+
+.descri {
+    display: flex;
+    flex-direction: column;
+}
+
+.nom_article {
+    font-size: medium;
+    color: rgb(191, 159, 77);
+    margin-bottom: 20px;
+}
+
+.button_liste {
+    background-color: #1e5555;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-style: italic;
+    font-size: small;
+    width: 20%;
+}
+
+.button_liste a {
+    white-space: nowrap;
+    line-height: 10px;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.button_liste a:hover {
+    background-color: white;
+    color: black;
+}
+.livre {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.detail_livre{
+    margin-top: 50px;
+    margin-bottom: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.detail_livre .livre .contenues img{
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.detail_livre .livre .contenues img:hover{
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+hr{
+    color: #f2e8e8;
+    margin: 20px ;
+
+}
+/*************************************QUESTIONS***********************************/
+.question{
+    width: 50%;
+   
+}
+
+/*************************************LISTE LIVRE************************* */
+.liste_livre{
+    margin-top: 50px;
+    margin-bottom: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.liste_livre .info_article .tout .ima img{
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.liste_livre .info_article .tout .ima img:hover{
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+/*************************************EMPRUNTER***********************************/
+.article_emprunt{
+    margin-top: 50px;
+    margin-bottom: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+
+.article_emprunt .emprunt{
+    margin: 0 auto;
+    margin-top: 10%;
+    margin-bottom: 20%;
+}
+/***********************************CONTACTE*******************************/
+.article_contact{
+    margin-top: 50px;
+    margin-bottom: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+.article_contact input[type=text], textarea, input[type=email] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    margin-right: 0px;
+    margin-left: 0px;
+    resize: vertical;
+  }
+  .article_contact label{margin-right: 0px;
+    margin-left: 0px;
+    width: 100%;}
+  
+  .article_contact input[type=submit] {
+    background-color: #1e5555;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 30%;
+  
+  }
+
+/***********************************PAGE_ACCEUIL************************/
+.acceuil {
+    margin-top: 50px;
+    margin-bottom: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+.div_acceuil h1{
+    margin: 20px 20px;
+}
+.div_acceuil{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+* {
+    box-sizing: border-box
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* The dots/bullets/indicators */
+.dot,
+.dotes {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.dotes .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/*********************************************DIV2**************************************/
+.slides_ala_une {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.Slides_1 {
+    display: none;
+}
+
+/********************************INSCRIPTION CONNEXION*******************************/
+
+#container {
+
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 10%;
+    margin-bottom: 20%;
+}
+
+/* Bordered form */
+.form_inscri {
+    margin: 40px;
+    padding: 40px;
+    background-color: rgb(255, 255, 255, 0.6);
+    font-family: 'Josefin Sans',
+        sans-serif;
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+}
+
+.form_inscri:hover {}
+
+#container h1 {
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    color: #2F4F4F;
+    text-align: center;
+}
+
+/* Full-width inputs */
+input[type=text],
+input[type=password],
+input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+input[type=submit] {
+    background-color: #2F4F4F;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type=submit]:hover {
+    background-color: white;
+    color: #2F4F4F;
+}
+
+
+/****************************ADMIN******************** **/
+/* page Admin */
+.admin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 200px;
+}
+
+#table {
+
+
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+table {
+
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+td {
+
+    border: 1px solid #C0C0C0;
+    ;
+    padding: 10px;
+}
+
+.button {
+    background-color: #2F4F4F;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.ajou {
+    color: white;
+    list-style: none;
+}
+
+/********************FOOTER***************/
+footer {
+    height: 70px;
+    display: flex;
+    padding: 5px;
+    background-color: #1e5555;
+
+}
+
+footer nav ul a {
+    float: right;
+    margin-right: 150px;
+    color: white;
+
+}
+
+footer nav ul {
+    display: flex;
+    flex-direction: row;
+    text-transform: uppercase;
+}
