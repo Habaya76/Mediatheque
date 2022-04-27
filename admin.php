@@ -1,7 +1,7 @@
 <?php
 require_once("header.php");
 $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
-$resultats = $db->query('SELECT * FROM `articles` INNER JOIN categorie On categorie.idcategorie = articles.idcategorie ', PDO::FETCH_ASSOC);
+$resultats = $db->query('SELECT * FROM `articles` INNER JOIN categories On categories.idcategories = articles.idcategories ', PDO::FETCH_ASSOC);
 $resu = $resultats->fetchAll();
 
 ?>
@@ -24,9 +24,9 @@ $resu = $resultats->fetchAll();
                 for ($i = 0; $i < count($resu); $i++) :
                 ?>
                     <tr>
-                        <td name="idArticles"><?php echo $resu[$i]['idarticles'] ?></td>
-                        <td name="Nom"><?php echo $resu[$i]['nom'] ?></td>
-                        <td name="category"><?php echo $resu[$i]['categorie'] ?></td>
+                        <td name="idArticles"><?php echo $resu[$i]['idArticles'] ?></td>
+                        <td name="Nom"><?php echo $resu[$i]['titre'] ?></td>
+                        <td name="category"><?php echo $resu[$i]['categories'] ?></td>
                         <td name="auteur"><?php echo $resu[$i]['auteur'] ?></td>
                         <td>
                             <button class="button_admin"><a href="ajout_article.php">Ajouter</a></button>

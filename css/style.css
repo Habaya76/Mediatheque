@@ -221,6 +221,15 @@ hr {
     -webkit-transform: scale(1.3);
     transform: scale(1.3);
 }
+.info_article{
+    flex-wrap: wrap;
+}
+.liste_livre .info_article .tout .info .plus_info{
+    background-color: #1e5555;
+    width: 5%;
+    height: 10px;
+
+}
 
 /*************************************EMPRUNTER***********************************/
 .article_emprunt {
@@ -455,7 +464,7 @@ input[type=submit]:hover {
 }
 
 
-/****************************ADMIN******************** **/
+/*********************************************ADMIN********************************************* **/
 .tout_les_article{
      margin: auto;
  }
@@ -488,6 +497,35 @@ th{
     border: none;
 
 }
+.button_add, .retour{
+    background-color: #1e5555;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+}
+.button_add :hover{
+    background-color: #1e5555;
+    color: white
+}
+form .retour a{
+    white-space: nowrap;
+    color: inherit;
+    text-decoration: inherit;
+
+}
+
+.merci{
+    color: green;
+    font-size: large;
+    text-align: center;
+}
+.error{
+    color: red;
+    font-size: small;
+}
 
 .button_admin a {
     white-space: nowrap;
@@ -496,10 +534,11 @@ th{
     text-decoration: inherit;
     width: 20%;
 }
-
-.button_admin a:hover {
-    background-color: white;
-    color: black;
+.ajout_article{
+   
+}
+.ajouter{
+    justify-content: center;
 }
 
 .div-admin {

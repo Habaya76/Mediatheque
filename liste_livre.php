@@ -3,9 +3,7 @@ require_once('header.php');
 
 $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 
-$resultats = $db->query('SELECT * From articles where idcategories = 2', PDO::FETCH_ASSOC);
-
-
+$resultats = $db->query('SELECT * From articles where idcategories = 3', PDO::FETCH_ASSOC);
 ?>
 <article class="liste_livre ">
 

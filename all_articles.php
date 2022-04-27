@@ -2,12 +2,12 @@
 
 $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 
-$resultats = $db->query('SELECT * From article', PDO::FETCH_ASSOC);
+$resultats = $db->query('SELECT * From articles', PDO::FETCH_ASSOC);
 
 ?>
-<article class="liste_livre">
+<articles class="liste_livre">
 
-    <div class="info_article ">
+    <div class="info_article flex ">
 
         <?php
         while ($row = $resultats->fetch()) :
@@ -20,13 +20,13 @@ $resultats = $db->query('SELECT * From article', PDO::FETCH_ASSOC);
 
 
             <div class="info m-20 ">
-            <p class="nom_article ">
+            <p class="nom_articles ">
                 <?php
                 echo $row['nom'];
                 ?></p>
                 <p><?php echo $row['resume']; ?></p>
 
-                <button  class="button_liste m-20"><a class="p-20 block" href="livre.php?idarticle=<?php echo $row['idarticle']; ?> ">plus d'infos</a></button>
+                <button  class="button_liste m-20"><a class="p-20 block" href="livre.php?idArticles=<?php echo $row['idArticles']; ?> ">plus d'infos</a></button>
             </div>
         </div>
         <hr>
@@ -34,6 +34,6 @@ $resultats = $db->query('SELECT * From article', PDO::FETCH_ASSOC);
 
     </div>
 
-</article>
+</articles>
 
 <?php require_once('footer.php'); ?>

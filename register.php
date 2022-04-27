@@ -4,14 +4,13 @@ include_once('header.php');
 $pwdh = ['cost ' => 14];
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$nom = $prenom = $pseudo = $password = $email = "";
+$nom = $prenom = $password = $email = "";
 $nomError = $prenomError = $pseudoError = $passwordError = $emailError = $roleError = "";
 $isValid = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = verifyInput($_POST["nom"]);
     $prenom = verifyInput($_POST["prenom"]);
-    $pseudo = verifyInput($_POST["pseudo"]);
     $password = verifyInput($_POST["password"]);
     $email = verifyInput($_POST["email"]);
     $isValid = true;
@@ -24,10 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $prenomError = "Le prenom ne peut pas etre vide";
         $isValid = false;
     }
-    if (empty($pseudo)) {
-        $pseudoError = "Le pseudo ne peut pas etre vide";
-        $isValid = false;
-    }
+
     if (empty($email)) {
         $emailError = "Le mail ne peut pas etre vide";
         $isValid = false;
@@ -38,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($isValid) {
         $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
-        $resultats = $db->prepare("INSERT INTO `users` ( `nom`, `prenom`, `pseudo`, `password`, `email`, `role`) values (:nom, :prenom, :pseudo, :password, :email, :role)");
-        $resultats->execute(['nom' => $nom, 'prenom' => $prenom, 'pseudo' => $pseudo, 'password' => $hashed_password, 'email' => $email, 'role' => 'user']);
+        $resultats = $db->prepare("INSERT INTO `users` ( `nom`, `prenom`,`password`, `email`, `role`) values (:nom, :prenom,  :password, :email, :role)");
+        $resultats->execute(['nom' => $nom, 'prenom' => $prenom, 'password' => $hashed_password, 'email' => $email, 'role' => 'user']);
     }
 }
 function verifyInput($var)
@@ -68,10 +64,6 @@ function isEmail($var)
         <input type="text" name="prenom" placeholder="votre prenom" value="">
         <p id="error"><?php echo $prenomError; ?></p>
 
-        <label for="">Pseudo</label>
-        <input type="text" name="pseudo" placeholder="votre pseudo" value="">
-        <p id="error"><?php echo $pseudoError; ?></p>
-
         <label for="">E-mail</label>
         <input type="text" name="email" placeholder="votre E-mail" value="">
         <p id="error"><?php echo $emailError; ?></p>
@@ -83,7 +75,7 @@ function isEmail($var)
         <input type="submit" name="bouton" value="Inscription">
         <p class="merci" style="display:<?php if ($isValid) echo 'block';
                                         else echo 'none'; ?>">Merci vous etes bien inscrit:)</p>
-        <p class="register">Déjà inscrit?
+        <p class="register" style="font-size: small;">Déjà inscrit?
             <a href="login.php">Connectez-vous ici</a>
         </p>
     </form>

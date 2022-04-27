@@ -1,62 +1,51 @@
 <?php
 require_once('header.php');
 
+$email = $password = "";
+$Error = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-if (isset($_POST['submit'])) {
-
-    if ($_POST['email'] != "" || isset($_POST['password'])) {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+    if (!empty($email) && !empty($password)) {
         $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
-        $req = $db->prepare(" SELECT * FROM users WHERE email=? ");
-        $req->execute(array($email));
-        $count = $req->rowCount();
-        $user = $req->fetch();
+        $req = $db->prepare('SELECT email, idusers, role, password FROM users WHERE email = :email AND password = :password');
+        $req->execute(array('email' => $_POST['email'], 'password' => $_POST['password']));
+        $resultat = $req->fetch();
 
-        if ($count > 0) {
-            if (password_verify($password, $users['password'])) {
-                $_POST['password'];
-                $_SESSION['email'] = $email;
-                header("location: index.php");
-            } else {
-                echo "
-     				<script>alert('Invalid username or password')</script>
-     				<script>window.location = 'login.php'</script>
-     				";
-            }
+        if (!$resultat) {
+            $Error = 'mot de passe ou E-mail incorrecte';
         } else {
-            echo "
-            			<script>alert('Please complete the required field!')</script>
-        				<script>window.location = 'login.php'</script>
-            	";
+
+            $_SESSION['email'] = $resultat['email'];
+            $_SESSION['password'] = $resultat['password'];
+            $_SESSION['idusers'] = $resultat['idusers'];
+            $_SESSION['role'] = $resultat['role'];
+            header('location:index.php');
         }
     }
 }
-
 ?>
-
-<div id="container">
-    <!-- zone de connexion -->
-
-    <form action="" method="POST" class="form_inscri">
-        <h1>Connexion</h1>
-
-        <label><b>Nom d'utilisateur</b></label>
-        <input type="email" placeholder="email ou d'utilisateur" name="email" required>
-
-        <label><b>Mot de passe</b></label>
-        <input type="password" placeholder="Entrer le mot de passe" name="password" required>
-
-        <input type="submit" id='submit' value='Connexion'>
-        <?php
-        if (isset($_GET['erreur'])) {
-            $err = $_GET['erreur'];
-            if ($err == 1 || $err == 2)
-                echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
-        }
-        ?>
-    </form>
-</div>
+<main>
+    <section class="section_connexion">
+        <article class="article_connexion">
+            <div id="container">
+                <!-- zone de connexion -->
+                <form id="form_connexion" action="" method="POST" class="form_inscri">
+                    <h1>Connexion</h1>
+                    <label><b>Nom d'utilisateur</b></label>
+                    <input type="text" placeholder="user ou E-mail" name="email" value="<?php echo $email; ?>" required>
+                    <p class="error"><?php echo $Error; ?></p>
+                    <label><b>Mot de passe</b></label>
+                    <input type="password" placeholder="Entrer le mot de passe" name="password" required>
+                    <p class="error"><?php echo $Error; ?></p>
+                    <input type="submit" id='submit' value='Connexion'>
+                    <p class="register" style = 'font-size: small';>Vous êtes nouveau ? cliquez ici pour <a href="register.php"> S'inscrire </a>
+                </form>
+            </div>
+        </article>
+    </section>
+</main>
 <?php
 require_once('footer.php');
 ?>

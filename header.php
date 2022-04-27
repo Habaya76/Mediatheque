@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +51,7 @@
                             <li class="nav-item"><a href="liste_musique.php" class="p-20 block">Musique</a></li>
                             <li class="nav-item"><a href="liste_cinema.php" class="p-20 block"> Cinéma</a></li>
                             <li class="nav-item"><a href="liste_presse.php" class="p-20 block">La presse</a></li>
-                            <li class="nav-item"><a href="leslivres.php" class="p-20 block">Les livres</a></li>
+                            <li class="nav-item"><a href="liste_livre.php" class="p-20 block">Les livres</a></li>
 
                         </ul>
                     </li>
