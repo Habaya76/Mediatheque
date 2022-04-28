@@ -9,7 +9,7 @@ $req->execute();
 $resul = $req->fetch();
 $idarticle = $_GET['idArticles'];
 $idusers = $_SESSION['idusers'];
-
+$disponibilite = $_SESSION['status'];
 ?>
 
 <articles class="liste_livre">
@@ -22,6 +22,11 @@ $idusers = $_SESSION['idusers'];
             <div class="resu m-20">
                 <p class="nom_article ">
                     <?php
+                    echo $resultat['status'];
+                    ?></p>
+
+                <p class="nom_article ">
+                    <?php
                     echo $resultat['titre'];
                     ?></p>
 
@@ -29,9 +34,9 @@ $idusers = $_SESSION['idusers'];
                 echo $resultat['resume'];
                 ?></p>
                 <div class="info m-20 ">
-
-                    <button class="button_liste m-20"><a href="emprunt.php" class="p-20 block">Emprunter</a></button>
-    
+                    <?php if ($resultat['status'] != 'indisponible') : ?>
+                        <button class="button_liste m-20"><a href="emprunt.php?idArticles=<?php echo $resultat['idArticles']; ?>" class="p-20 block">Emprunter</a></button>
+                    <?php endif ?>
                 </div>
             </div>
         </div>

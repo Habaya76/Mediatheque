@@ -21,7 +21,7 @@ $resultats = $db->query('SELECT * From articles where idcategories = 4', PDO::FE
                         <?php
                         echo $row['titre'];
                         ?></p>
-                    <img src="images/<?php echo $row['images']; ?>" width="200px">
+                 <img src="<?php echo $row['images']; ?>">
                     <div class="info m-20 ">
 
                         <button class="button_liste m-20"><a class="plus_info p-20 block" href="article.php?idArticles=<?php echo $row['idArticles']; ?> ">plus d'infos</a></button>

@@ -30,11 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $isSuccess = false;
     }
 
-/*     if (empty($images)) {
-        $imagesError = "le nom ne peut pas etre vide";
-        $isSuccess = false;
-    } */
-
     if (empty($resume)) {
         $resumeError = "le nom ne peut pas etre vide";
         $isSuccess = false;
@@ -102,7 +97,7 @@ function verifyInput($var)
             <label for="contenues">contenues</label>
             <textarea name="contenues" id="message" cols="30" rows="10"><?php echo $contenues; ?></textarea>
             <p class="error"><?php echo $contenuesError; ?></p>
-           <a href="admin.php" class="">Retour</a>
+            <a href="admin.php" class="">Retour</a>
             <button class="button_add" name="ajouter_article">Ajouter</button>
             <p class="merci" style="display:<?php if ($isSuccess) echo 'block';
                                             else echo 'none'; ?>">Article a été Ajouter:)</p>

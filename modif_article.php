@@ -17,23 +17,24 @@ if (isset($_POST['modifier'])) {
     $resume = $_POST['resume'];
     $contenues = $_POST['contenues'];
     // Requête de modification d'enregistrement
+    if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0) {
+        // Testons si le fichier n'est pas trop gros
+        if ($_FILES['screenshot']['size'] <= 2000000) {
+            // Testons si l'extension est autorisée
+            $fileInfo = pathinfo($_FILES['screenshot']['name']);
+            $extension = $fileInfo['extension'];
+            $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
+            if (in_array($extension, $allowedExtensions)) {
+                // On peut valider le fichier et le stocker définitivement
+                $images = 'images/' . basename($_FILES['screenshot']['name']);
+                move_uploaded_file($_FILES['screenshot']['tmp_name'], $images);
+                // echo "L'envoi a bien été effectué !";
+            }
+        }
+    }
     $Modifierarticles = $db->prepare("UPDATE articles SET titre = '$titre', auteur ='$auteur', images = '$images',resume = '$resume', contenues = '$contenues' WHERE idArticles = $idArticles");
     $Modifierarticles->execute();
 } // Fin du test isset
-if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0) {
-    // Testons si le fichier n'est pas trop gros
-    if ($_FILES['screenshot']['size'] <= 1000000) {
-        // Testons si l'extension est autorisée
-        $fileInfo = pathinfo($_FILES['screenshot']['images']);
-        $extension = $fileInfo['extension'];
-        $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
-        if (in_array($extension, $allowedExtensions)) {
-            // On peut valider le fichier et le stocker définitivement
-            move_uploaded_file($_FILES['screenshot']['images'], 'images/' . basename($_FILES['screenshot']['images']));
-            // echo "L'envoi a bien été effectué !";
-        }
-    }
-}
 $idArticles = $_GET['idArticles'];
 $selec = $db->query("SELECT * FROM articles where idArticles = $idArticles");
 $recupere = $selec->fetch();
@@ -54,7 +55,7 @@ $recupere = $selec->fetch();
 
 
             <label for="" class="form-label">Images</label>
-            <input type="file" class="form-control" id="screenshot" name="images" value="<?php echo $recupere['images'] ?>" />
+            <input type="file" class="form-control" id="screenshot" name="screenshot" value="<?php echo $recupere['images'] ?>" />
 
 
             <label for="">ID_categories</label>

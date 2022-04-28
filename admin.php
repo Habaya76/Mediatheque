@@ -5,10 +5,8 @@ $resultats = $db->query('SELECT * FROM `articles` INNER JOIN categories On categ
 $resu = $resultats->fetchAll();
 $select_users = $db->query('SELECT * FROM `users` ');
 $sele = $select_users->fetchAll();
-
 ?>
 <article class="article_admin flex p-20 ">
-
 
     <div class="tout_les_article p-20">
 
@@ -42,7 +40,7 @@ $sele = $select_users->fetchAll();
                         <td name="category"><?php echo $resu[$i]['categories'] ?></td>
                         <td>
 
-                            <button class="button_admin"><a href="suprime.php">Suprimer</a></button>
+                            <button class="button_admin"><a href="sup_articles.php?idArticles=<?php echo $resu[$i]['idArticles'] ?>">Suprimer</a></button>
                             <button class="button_admin"><a href="modif_article.php?idArticles=<?php echo $resu[$i]['idArticles']; ?>">Modifier</a></button>
                         </td>
                     </tr>
@@ -53,18 +51,13 @@ $sele = $select_users->fetchAll();
             </tbody>
         </table>
     </div>
-
     <div class="tout_les_article">
-
-
         <button class="button_admin"><a href="add_users.php">Création_users</a></button>
-
-
         <h2>Liste des users</h2>
         <table>
             <thead>
                 <tr>
-                    <th name="idarticles">ID_users</th>
+                    <th name="idusers">ID_users</th>
                     <th name="nom">nom</th>
                     <th name="prenom">prenom</th>
                     <th name="email">email</th>
@@ -82,9 +75,8 @@ $sele = $select_users->fetchAll();
                         <td name="email"><?php echo $sele[$i]['email'] ?></td>
                         <td name="role"><?php echo $sele[$i]['role'] ?></td>
                         <td>
-
-                            <button class="button_admin"><a href="suprime.php">Suprimer</a></button>
-                            <button class="button_admin"><a href="modif_article.php?idArticles=<?php echo $sele[$i]['idusers']; ?>">Modifier</a></button>
+                            <button class="button_admin"><a href="sup_articles.php?idusers=<?php echo $sele[$i]['idusers']; ?>">Suprimer</a></button>
+                            <button class="button_admin"><a href="modif_article.php?idusers=<?php echo $sele[$i]['idusers']; ?>">Modifier</a></button>
                         </td>
                     </tr>
                 <?php

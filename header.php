@@ -3,21 +3,22 @@
 session_start();
 $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 
-// $articles = $db->query('SELECT titre, auteur,images FROM articles ORDER BY idArticles DESC');
-// if (isset($_GET['recherche'])) {
+$articles = $db->query('SELECT titre, auteur,images FROM articles ORDER BY idArticles DESC');
+if (isset($_GET['recherche'])) {
 
-//     $q = htmlspecialchars($_GET['q']);
-//     try {
-//         $articles = $db->query('SELECT titre, auteur, images FROM articles WHERE titre LIKE "%' . $q . '%" ORDER BY idArticles DESC');
+    $q = htmlspecialchars($_GET['q']);
+    try {
+        $articles = $db->query('SELECT titre, auteur, images FROM articles WHERE titre LIKE "%' . $q . '%" ORDER BY idArticles DESC');
 
-//         if ($articles->rowCount() == 0) {
-//             $articles = $bdd->query('SELECT titre, auteur, images FROM articles WHERE CONCAT(titre, contenu) LIKE "%' . $idArticles . '%" ORDER BY idArticles DESC');
-//         } else {
-//         }
-//     } catch (Exception $e) {
-//         echo $e->getMessage();
-//     }
-// }
+        if ($articles->rowCount() == 0) {
+            $articles = $bdd->query('SELECT titre, auteur, images FROM articles WHERE CONCAT(titre, contenu) LIKE "%' . $idArticles . '%" ORDER BY idArticles DESC');
+        } else {
+        }
+        
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
 
 ?>
 <!DOCTYPE html>

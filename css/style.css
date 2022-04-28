@@ -219,6 +219,8 @@ hr {
 /*************************************LISTE LIVRE************************* */
 
 .liste_livre .info_article .tout .ima img {
+    width: 300px;
+    height: 350px;
     -webkit-transform: scale(1);
     transform: scale(1);
     -webkit-transition: .3s ease-in-out;
