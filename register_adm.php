@@ -3,22 +3,18 @@ include_once('header.php');
 
 ?>
 <div class="autre flex m-20">
-    <div class="div-admin m-20">
-
-        <h2>Inscription des abonnés de la Médiathèque</h2>
-        <form action="">
-            <label for="">Nom</label>
-            <input type="text" name="nom">
-            <label for="">Prenom</label>
-            <input type="text" name="prenom">
-            <label for="">Email</label>
-            <input type="email" name="contact">
-            <button class="button_admin"><a href="register_adm.php">Inscription</a></button>
-            <button class="button_admin"><a href="suprime.php">Suprimer</a></button>
-            <button class="button_admin"><a href="modifier.php">Modifier</a></button>
-        </form>
-    </div>
-
+    <form method="POST" action="" class="form_inscri">
+        <h1>Inscription</h1>
+        <label for="">nom</label>
+        <input type="text" name="nom" placeholder="votre nom" value="">
+        <label for="">prenom</label>
+        <input type="text" name="prenom" placeholder="votre prenom" value="">
+        <label for="">E-mail</label>
+        <input type="text" name="email" placeholder="votre E-mail" value="">
+        <label for="">Mot de passe</label>
+        <input type="password" name="password" placeholder="votre mot de passe" value="">
+        <input type="submit" name="bouton" value="Inscription">
+    </form>
 </div>
 <?php
 require_once('footer.php');

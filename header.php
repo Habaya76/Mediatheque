@@ -1,5 +1,24 @@
 <?php
+
 session_start();
+$db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
+
+// $articles = $db->query('SELECT titre, auteur,images FROM articles ORDER BY idArticles DESC');
+// if (isset($_GET['recherche'])) {
+
+//     $q = htmlspecialchars($_GET['q']);
+//     try {
+//         $articles = $db->query('SELECT titre, auteur, images FROM articles WHERE titre LIKE "%' . $q . '%" ORDER BY idArticles DESC');
+
+//         if ($articles->rowCount() == 0) {
+//             $articles = $bdd->query('SELECT titre, auteur, images FROM articles WHERE CONCAT(titre, contenu) LIKE "%' . $idArticles . '%" ORDER BY idArticles DESC');
+//         } else {
+//         }
+//     } catch (Exception $e) {
+//         echo $e->getMessage();
+//     }
+// }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +36,6 @@ session_start();
 <body>
     <header>
         <div id="page_acceuil">
-
             <div class="nav_1">
                 <img src="" alt="">
 
@@ -34,6 +52,14 @@ session_start();
                     <li class="nav-item relative"><a href="register.php" class="p-20 m-5 block">Inscription</a></li>
                 </ul>
             </div>
+            <div id="searchbar">
+                <form action="" class="formulaire">
+                    <input class="champ" type="text" value="Recherche....." name="q" />
+                    <button class="bouton" type="submit" name="recherche">Rechercher</button>
+
+                </form>
+            
+            </div>
 
             <div id="menu">
                 <ul class="unlisted flex gap-20">
@@ -41,8 +67,7 @@ session_start();
                     <li class="nav-item relative">
                         <a href="#" class=" dropdown p-20 block">Pratique</a>
                         <ul class="unlisted absolute">
-                            <li class="nav-item"><a href="pratique.php" class="p-20 block">S'inscrire & emprunter</a></li>
-                            <li class="nav-item"><a href="question.php" class="p-20 block">Des question ?</a></li>
+                            <li class="nav-item"><a href="pratique.php" class="p-20 block">emprunter</a></li>
                         </ul>
                     </li>
                     <li class="nav-item relative">
@@ -64,7 +89,7 @@ session_start();
                         </ul>
                     </li>
                     <li class="nav-item relative">
-                    <a href="contact.php" class=" p-20 block">contact</a>
+                        <a href="contact.php" class=" p-20 block">contact</a>
 
                     </li>
                 </ul>

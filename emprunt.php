@@ -1,38 +1,26 @@
 <?php require_once("header.php");
+SELECT * FROM abonne ; 
+SELECT * FROM livre ; 
+SELECT * FROM emprunt ; 
 
-
-
-function debugPrintVariableGET()
-{
-    global $Debug;
-    if ($Debug) {
-        debugPrintVariable("_GET");
-
-
-
-
-        if (isset($_GET['button_emprunter'])) {
-            $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
-            $emp = $db->prepare('SELECT * FROM livres WHERE nom = "' . $livres['nom'] . '" ');
-            $emp->execute(array($_POST['button_emprunter']));
-            $res = $emp->fetch();
-
-            echo $res[0];
-
-            if ($res[0] > 0) {
-                $res[0]--;
-                $emprunt = $db->prepare('UPDATE livre SET nbLivre ="' . $res[0] . '" AND nomLivre = "' . $livre['nomLivre'] . '"');
-                $emprunt->execute(array($res[0]));
-
-                $erreur = "Ce livre à bien était emprunté !";
-            } else {
-                $erreur = "Nous n'avons plus se livre en stock !";
-            }
-        }
-    }
-}
 ?>
-
+nbLivres,nbJour = map(int,input().split(" "))
+nbLivres = [0] * (nbLivres)
+ 
+for ijour in range(nbJour):
+   nbClient = int(input())
+   for loop in range(nbClient):
+      indiceLivre,duré = map(int,input().split(" "))
+      if nbLivres[indiceLivre] == 0:
+         print("1")
+         nbLivres[indiceLivre] += duré - 1
+      else:
+         print("0")
+          
+   for i in nbLivres:
+      if i > 0:
+         i -= ijour
+      print("indiceLivre",i)
 
 <article class="article_emprunt">
 

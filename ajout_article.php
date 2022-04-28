@@ -30,10 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $isSuccess = false;
     }
 
-    if (empty($images)) {
+/*     if (empty($images)) {
         $imagesError = "le nom ne peut pas etre vide";
         $isSuccess = false;
-    }
+    } */
 
     if (empty($resume)) {
         $resumeError = "le nom ne peut pas etre vide";
@@ -43,11 +43,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $contenuesError = "le nom ne peut pas etre vide";
         $isSuccess = false;
     }
+    // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
+    if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0) {
+        // Testons si le fichier n'est pas trop gros
+        if ($_FILES['screenshot']['size'] <= 1000000) {
+            // Testons si l'extension est autorisée
+            $fileInfo = pathinfo($_FILES['screenshot']['name']);
+            $extension = $fileInfo['extension'];
+            $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
+            if (in_array($extension, $allowedExtensions)) {
+                // On peut valider le fichier et le stocker définitivement
+                $images = 'images/' . basename($_FILES['screenshot']['name']);
+                move_uploaded_file($_FILES['screenshot']['tmp_name'], $images);
+                // echo "L'envoi a bien été effectué !";
+            }
+        }
+    } else {
+        $imagesError = "le nom ne peut pas etre vide";
+        $isSuccess = false;
+    }
     if ($isSuccess) {
         // la connexion basse de donnees
         $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
-        $resultats = $db->prepare("INSERT INTO `articles`(`titre`, `auteur`,`images`, `idcategories`, `idusers`,`resume`, `contenues`) values (:titre, :auteur, :images,  :idcategories, :idusers, :resume, :contenues)");
-        $resultats->execute(['titre' => $titre, 'auteur' => $auteur, 'images' => $images, 'idcategories' => $idcategories, 'idusers' => $idusers, 'resume' => $resume, 'contenues' => $contenues]);
+        $resultats = $db->prepare("INSERT INTO `articles`(`titre`, `auteur`,`images`,  `idcategories`, `idusers`,`resume`, `contenues`) values (:titre, :auteur, :images,  :idcategories, :idusers, :resume, :contenues)");
+        $resultats->execute(['titre' => $titre, 'auteur' => $auteur, 'images' => $images,  'idcategories' => $idcategories, 'idusers' => $idusers, 'resume' => $resume, 'contenues' => $contenues]);
     }
 }
 
@@ -63,24 +82,19 @@ function verifyInput($var)
 <article class="liste_livre">
     <div class="info_article m-20 ">
 
-        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
             <label for="">Titre</label>
             <input name="titre" type="text" value="<?php echo $titre; ?>" placeholder="entre le titre de l'article">
             <p class="error"><?php echo $titreError; ?></p>
             <label for="">Auteur</label>
             <input name="auteur" type="text" value="<?php echo $auteur; ?>">
             <p class="error"><?php echo $auteurError; ?></p>
-            <label for="">images</label>
-            <input name="images" type="text" value="<?php echo $images; ?>">
-            <p class="error"><?php echo $imagesError; ?></p>
 
+            <label for="screenshot" class="form-label"></label>
+            <input type="file" class="form-control" id="screenshot" name="screenshot" />
+            <br>
             <label for="">ID_categories</label>
-            <input name="idcategories" type="text" value="<?php echo $idcategories; ?>">
-
-
-            <label for="">ID_users</label>
-            <input name="idusers" type="text" value="<?php echo $idusers; ?>">
-
+            <input name="idcategories" type="text" value="<?php echo $idcategories; ?>"><br>
 
             <label for="">Resume</label>
             <textarea name="resume" id="message" cols="30" rows="10"><?php echo $contenues; ?></textarea>
@@ -88,11 +102,12 @@ function verifyInput($var)
             <label for="contenues">contenues</label>
             <textarea name="contenues" id="message" cols="30" rows="10"><?php echo $contenues; ?></textarea>
             <p class="error"><?php echo $contenuesError; ?></p>
-            <button class="retour"><a href="admin.php">Retour</a></button>
+           <a href="admin.php" class="">Retour</a>
             <button class="button_add" name="ajouter_article">Ajouter</button>
             <p class="merci" style="display:<?php if ($isSuccess) echo 'block';
                                             else echo 'none'; ?>">Article a été Ajouter:)</p>
         </form>
+
     </div>
 </article>
 <?php

@@ -2,29 +2,29 @@
 require('header.php');
 
 $date = new DateTime();
-$email = $message = "";
-$emailError = $messageError = "";
+$email = $messages = "";
+$emailError = $messagesError = "";
 $isSuccess = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = verifyInput($_POST["email"]);
-    $message = verifyInput($_POST["message"]);
+    $messages = verifyInput($_POST["messages"]);
     $isSuccess = true;
 
     if (empty($email)) {
         $emailError = "saisir email balala";
         $isSuccess = false;
     }
-    if (empty($message)) {
-        $messageError = 'veillez saissir un message';
+    if (empty($messages)) {
+        $messagesError = 'veillez saissir un messages';
         $isSuccess = false;
     }
     if ($isSuccess) {
 
         $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
         //controler la connexion
-        $resultats = $db->prepare("INSERT INTO `message` (`email`, `message`, `date`) values (:email, :message, :date)");
-        $resultats->execute(['email' => $email, 'message' => $message, 'date' => $date->format('Y-m-d H:m:s')]);
+        $resultats = $db->prepare("INSERT INTO `contact` (`email`, `messages`, `date`) values (:email, :messages, :date)");
+        $resultats->execute(['email' => $email, 'messages' => $messages, 'date' => $date->format('Y-m-d H:m:s')]);
     }
 }
 function isEmail($var)
@@ -47,12 +47,12 @@ function verifyInput($var)
                 <label classe="labelmail" for="email">E-mail*</label>
                 <input type="text" id="email" name="email" placeholder="E-mail" value="<?php echo $email; ?>">
                 <p class="error"><?php echo $emailError; ?></p>
-                <label class="labelmessage" for="message">Message*</label>
-                <textarea name="message" id="message" cols="30" rows="10"><?php echo $message; ?></textarea>
-                <p class="error"><?php echo $messageError; ?></p>
+                <label class="labelmessages" for="messages">messages*</label>
+                <textarea name="messages" id="messages" cols="30" rows="10"><?php echo $messages; ?></textarea>
+                <p class="error"><?php echo $messagesError; ?></p>
                 <input type="submit" value="Envoyer" class="button">
                 <p class="merci" style="display:<?php if ($isSuccess) echo 'block';
-                                                else echo 'none'; ?>">votre message à bien été envoyé.Merci de m'avoir contacter :)</p>
+                                                else echo 'none'; ?>">votre messages à bien été envoyé.Merci de m'avoir contacter :)</p>
             </form>
         </article>
 <?php
