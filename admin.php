@@ -31,17 +31,6 @@ $sele = $select_users->fetchAll();
                 </tr>
             </thead>
             <tbody>
-
-
-
-
-
-
-
-
-
-
-
                 <?php
                 for ($i = 0; $i < count($resu); $i++) :
                 ?>
