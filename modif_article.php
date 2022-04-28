@@ -9,13 +9,11 @@ $resultat = $req->fetchAll();
 // Réecriture des variables
 if (isset($_POST['modifier'])) {
 
-    var_dump($_POST);
     // Réecriture des variables
     $titre = $_POST['titre'];
     $auteur = $_POST['auteur'];
     $image = $_POST['images'];
     $idArticles = $_GET['idArticles'];
-    $idusers = $_GET['idusers'];
     $resume = $_POST['resume'];
     $contenues = $_POST['contenues'];
     // Requête de modification d'enregistrement
@@ -26,12 +24,12 @@ if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0) {
     // Testons si le fichier n'est pas trop gros
     if ($_FILES['screenshot']['size'] <= 1000000) {
         // Testons si l'extension est autorisée
-        $fileInfo = pathinfo($_FILES['screenshot']['name']);
+        $fileInfo = pathinfo($_FILES['screenshot']['images']);
         $extension = $fileInfo['extension'];
         $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png', 'webp'];
         if (in_array($extension, $allowedExtensions)) {
             // On peut valider le fichier et le stocker définitivement
-            move_uploaded_file($_FILES['screenshot']['tmp_name'], 'images/' . basename($_FILES['screenshot']['name']));
+            move_uploaded_file($_FILES['screenshot']['images'], 'images/' . basename($_FILES['screenshot']['images']));
             // echo "L'envoi a bien été effectué !";
         }
     }
@@ -55,12 +53,13 @@ $recupere = $selec->fetch();
 
 
 
-            <label for="screenshot" class="form-label">Images</label>
-            <input type="file" class="form-control" id="screenshot" name="images" />
+            <label for="" class="form-label">Images</label>
+            <input type="file" class="form-control" id="screenshot" name="images" value="<?php echo $recupere['images'] ?>" />
 
 
             <label for="">ID_categories</label>
             <input name="idcategories" type="text" value="<?php echo $recupere['idcategories'] ?>">
+
 
             <label for="">Resume</label>
             <textarea name="resume" id="message" cols="30" rows="10"><?php echo $contenues; ?><?php echo $recupere['resume'] ?></textarea>
@@ -73,8 +72,7 @@ $recupere = $selec->fetch();
             <button class="button_add" name="ajouter_article"><a href="admin.php">Retour</a></button>
             <input name="modifier" type="submit" value="modifier">
 
-            <p class="merci" style="display:<?php if ($isSuccess) echo 'block';
-                                            else echo 'none'; ?>">Article a été modifier:)</p>
+
         </form>
     </div>
 </article>
