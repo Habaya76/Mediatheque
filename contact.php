@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($isSuccess) {
 
-        $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
+        // $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
         //controler la connexion
         $resultats = $db->prepare("INSERT INTO `contact` (`email`, `messages`, `date`) values (:email, :messages, :date)");
         $resultats->execute(['email' => $email, 'messages' => $messages, 'date' => $date->format('Y-m-d H:m:s')]);

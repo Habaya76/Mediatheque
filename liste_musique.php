@@ -1,7 +1,7 @@
 <?php
 require_once('header.php');
 
-$db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
+// $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 
 $resultats = $db->query('SELECT * From articles where idcategories = 2', PDO::FETCH_ASSOC);
 

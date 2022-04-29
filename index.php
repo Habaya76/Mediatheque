@@ -1,6 +1,6 @@
 <?php require_once('header.php');
 
-$db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
+// $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $resultats = $db->query('SELECT * From articles ', PDO::FETCH_ASSOC);
 

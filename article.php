@@ -1,6 +1,6 @@
 <?php require_once('header.php');
 session_start();
-$db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
+// $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 
 $req = $db->prepare('SELECT * FROM articles WHERE idArticles = :idArticles');
 $req->execute(array('idArticles' => $_GET['idArticles']));

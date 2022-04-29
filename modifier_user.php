@@ -1,7 +1,7 @@
 <?php
 include_once('header.php');
 
-$db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
+// $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 $req = $db->prepare('SELECT * FROM users ');
 $req->execute();
 $resultat = $req->fetchAll();

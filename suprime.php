@@ -1,5 +1,4 @@
 <?php
-
 $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 $idArticles = $_GET['idArticles'];
 $suprime_articles = $db->prepare("DELETE FROM articles WHERE idArticles = :idArticles");

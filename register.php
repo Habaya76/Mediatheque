@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $isValid = false;
     }
     if ($isValid) {
-        $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
+        // $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
         $resultats = $db->prepare("INSERT INTO `users` ( `nom`, `prenom`,`password`, `email`, `role`) values (:nom, :prenom,  :password, :email, :role)");
         $resultats->execute(['nom' => $nom, 'prenom' => $prenom, 'password' => $hashed_password, 'email' => $email, 'role' => 'user']);
     }

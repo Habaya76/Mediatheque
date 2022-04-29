@@ -224,7 +224,8 @@ body {
 .article_cinema .info_cinema,
 .article_presse .info_presse,
 .article_contact .info_contact,
-.article_article .info_article {
+.article_article .info_article,
+.article_add_users .add_users {
     margin-top: 80px;
     margin-bottom: 100px;
     margin-left: 100px;
@@ -435,7 +436,7 @@ input[type=email] {
 }
 
 /*************************************************CONTACT********************************************************** */
-.article_contact input[type=text],
+.article_contact input[type=text],.article_add_users[type=text],
 textarea,
 input[type=email] {
     width: 100%;
@@ -450,13 +451,13 @@ input[type=email] {
     resize: vertical;
 }
 
-.article_contact label {
+.article_contact label,.article_add_users label {
     margin-right: 0px;
     margin-left: 0px;
     width: 100%;
 }
 
-.article_contact input[type=submit] {
+.article_contact input[type=submit],.article_add_users[type=submit] {
     background-color: black;
     color: white;
     padding: 12px 20px;
@@ -468,7 +469,14 @@ input[type=email] {
 }
 
 /**************************************ADMIN******************************************** */
-
+#scroller {
+    width: 650px;
+    height: 500px;
+    overflow-y: scroll;
+    scrollbar-color: black;
+    scrollbar-width: thin;
+   
+  }
 table {
     border-collapse: collapse;
 }

@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     if (!empty($email) && !empty($password)) {
-        $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
+        // $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
         $req = $db->prepare('SELECT * FROM users WHERE email = :email');
         $req->execute(array('email' => $_POST['email']));
         $user = $req->fetchAll();

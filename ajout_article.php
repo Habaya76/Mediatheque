@@ -1,13 +1,14 @@
 <?php
-require('header.php');
+require_once('header.php');
 
-$db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
+// $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 $req = $db->prepare('SELECT * FROM categories ');
 $req->execute();
 $resultat = $req->fetchAll();
 
-$titreError = $contenuesError = $imageError = $auteurError = $resumeError = "";
-$titre = $contenues = $categories = $resume = $auteur = $images = "";
+
+$titreError = $contenuesError = $imageError = $auteurError = $resumeError = $statusError = "";
+$titre = $contenues = $categories = $resume = $auteur = $images = $status = "";
 $isSuccess = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,9 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $auteur = VerifyInput($_POST["auteur"]);
     $images = verifyInput($_POST['images']);
     $idcategories = verifyInput($_POST['idcategories']);
-    $idusers = $_SESSION['idusers'];
+    // $idusers = $_SESSION['idusers'];
     $resume = verifyInput($_POST["resume"]);
     $contenues = verifyInput($_POST["contenues"]);
+    $status = verifyInput($_POST["status"]);
     $isSuccess = true;
 
     if (empty($titre)) {
@@ -38,6 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $contenuesError = "le nom ne peut pas etre vide";
         $isSuccess = false;
     }
+    if (empty($status)) {
+        $statusError = "le nom ne peut pas etre vide";
+        $isSuccess = false;
+    }
+
+
     // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
     if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0) {
         // Testons si le fichier n'est pas trop gros
@@ -57,12 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagesError = "le nom ne peut pas etre vide";
         $isSuccess = false;
     }
+
     if ($isSuccess) {
         // la connexion basse de donnees
         $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
-        $resultats = $db->prepare("INSERT INTO `articles`(`titre`, `auteur`,`images`,  `idcategories`, `idusers`,`resume`, `contenues`) values (:titre, :auteur, :images,  :idcategories, :idusers, :resume, :contenues)");
-        $resultats->execute(['titre' => $titre, 'auteur' => $auteur, 'images' => $images,  'idcategories' => $idcategories, 'idusers' => $idusers, 'resume' => $resume, 'contenues' => $contenues]);
+        $resultats = $db->prepare("INSERT INTO `articles`(`titre`, `auteur`,`images`,`idcategories`,`resume`, `contenues`,`status`) values (:titre, :auteur, :images,  :idcategories, :resume, :contenues, :status)");
+        $resultats->execute(['titre' => $titre, 'auteur' => $auteur, 'images' => $images,  'idcategories' => $idcategories, 'resume' => $resume, 'contenues' => $contenues, 'status' => $status]);
     }
+    var_dump($resultat);
 }
 
 function verifyInput($var)
@@ -97,8 +107,12 @@ function verifyInput($var)
             <label for="contenues">contenues</label>
             <textarea name="contenues" id="message" cols="30" rows="10"><?php echo $contenues; ?></textarea>
             <p class="error"><?php echo $contenuesError; ?></p>
-            <a href="admin.php" class="">Retour</a>
-            <button class="button_add" name="ajouter_article">Ajouter</button>
+
+            <input name="status" type="text" value="<?php echo $status; ?>">
+            <p class="error"><?php echo $statusError; ?></p>
+
+            <button class="button_add" name="ajouter_article"><a href="admin.php">Retour</a></button>
+            <a href="#"><button name="bouton">Création_users</button></a>
             <p class="merci" style="display:<?php if ($isSuccess) echo 'block';
                                             else echo 'none'; ?>">Article a été Ajouter:)</p>
         </form>
