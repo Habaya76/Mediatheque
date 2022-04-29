@@ -9,19 +9,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty($email) && !empty($password)) {
         $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
-        $req = $db->prepare('SELECT email, idusers, role, password FROM users WHERE email = :email AND password = :password');
-        $req->execute(array('email' => $_POST['email'], 'password' => $_POST['password']));
-        $resultat = $req->fetch();
+        $req = $db->prepare('SELECT * FROM users WHERE email = :email');
+        $req->execute(array('email' => $_POST['email']));
+        $user = $req->fetchAll();
 
-        if (!$resultat) {
-            $Error = 'mot de passe ou E-mail incorrecte';
-        } else {
 
-            $_SESSION['email'] = $resultat['email'];
-            $_SESSION['password'] = $resultat['password'];
-            $_SESSION['idusers'] = $resultat['idusers'];
-            $_SESSION['role'] = $resultat['role'];
+        if (isset($user[0]) && $user[0]["password"] == password_verify($password, $user[0]["password"]) && $user[0]["email"] == $email) {
+            if(!isset($_SESSION)) {
+                session_start();
+            }
+            $_SESSION['email'] = $user[0]['email'];
+            $_SESSION['password'] = $user[0]['password'];
+            $_SESSION['idusers'] = $user[0]['idusers'];
+            $_SESSION['role'] = $user[0]['role'];
             header('location:index.php');
+        } else {
+            $Error = 'mot de passe ou E-mail incorrecte';
         }
     }
 }

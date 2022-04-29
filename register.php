@@ -2,7 +2,7 @@
 include_once('header.php');
 
 $pwdh = ['cost ' => 14];
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
 
 $nom = $prenom = $password = $email = "";
 $nomError = $prenomError = $pseudoError = $passwordError = $emailError = $roleError = "";
@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = verifyInput($_POST["nom"]);
     $prenom = verifyInput($_POST["prenom"]);
     $password = verifyInput($_POST["password"]);
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $email = verifyInput($_POST["email"]);
     $isValid = true;
 
