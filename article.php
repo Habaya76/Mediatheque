@@ -38,7 +38,7 @@ $disponibilite = $_SESSION['status'];
                 <?php if (isset($_SESSION['idusers'])) : ?>
                     <div class="info m-20 ">
                         <?php if ($resultat['status'] != 'indisponible') : ?>
-                            <button class="button_liste m-20"><a href="emprunt.php?idArticles=<?php echo $resultat['idArticles']; ?>" class="p-20 block">Emprunter</a></button>
+                            <button class="button_liste m-20"><a href="emprunt.php?idArticles=<?php echo $resultat['idArticles']?>" class="p-20 block">Emprunter</a></button>
                         <?php endif ?>
                     </div>
                 <?php endif ?>
