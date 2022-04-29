@@ -9,13 +9,3 @@ $recup->execute(array(
 $Modifierarticle = $db->prepare("UPDATE articles SET status = 'indisponible' where idArticles = :idArticles");
 $Modifierarticle->execute(array(':idArticles' => $_REQUEST['idArticles']));
 
-if ($recup) {
-    echo 'oui';
-}
-
-// <!-- 
-// <article class="article_emprunt">
-
-
-// </article>
-

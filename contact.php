@@ -41,20 +41,22 @@ function verifyInput($var)
     return $var;
 }
 ?>
-        <article class="article_contact">
-            <form id="contact_form" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" role="form">
-                <h2>Nous contactez</h2>
-                <label classe="labelmail" for="email">E-mail*</label>
-                <input type="text" id="email" name="email" placeholder="E-mail" value="<?php echo $email; ?>">
-                <p class="error"><?php echo $emailError; ?></p>
-                <label class="labelmessages" for="messages">messages*</label>
-                <textarea name="messages" id="messages" cols="30" rows="10"><?php echo $messages; ?></textarea>
-                <p class="error"><?php echo $messagesError; ?></p>
-                <input type="submit" value="Envoyer" class="button">
-                <p class="merci" style="display:<?php if ($isSuccess) echo 'block';
-                                                else echo 'none'; ?>">votre messages à bien été envoyé.Merci de m'avoir contacter :)</p>
-            </form>
-        </article>
+<article class="article_contact">
+    <div class="info_contact">
+        <form id="contact_form" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" role="form">
+            <h2>Nous contactez</h2>
+            <label classe="labelmail" for="email">E-mail*</label>
+            <input type="text" id="email" name="email" placeholder="E-mail" value="<?php echo $email; ?>">
+            <p class="error"><?php echo $emailError; ?></p>
+            <label class="labelmessages" for="messages">messages*</label>
+            <textarea name="messages" id="messages" cols="30" rows="10"><?php echo $messages; ?></textarea>
+            <p class="error"><?php echo $messagesError; ?></p>
+            <input type="submit" value="Envoyer" class="button">
+            <p class="merci" style="display:<?php if ($isSuccess) echo 'block';
+                                            else echo 'none'; ?>">votre messages à bien été envoyé.Merci de m'avoir contacter :)</p>
+        </form>
+    </div>
+</article>
 <?php
 require('footer.php');
 ?>

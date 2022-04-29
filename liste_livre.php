@@ -6,26 +6,29 @@ $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 
 $resultats = $db->query('SELECT * From articles where idcategories = 3', PDO::FETCH_ASSOC);
 ?>
-<article class="liste_livre ">
+<article class="article_livre ">
 
-    <div class="info_article flex ">
+    <div class="info_livre flex ">
 
         <?php
         while ($row = $resultats->fetch()) :
         ?>
-            <div class="tout flex m-20">
+            <div class="tout m-20">
 
                 <div class="ima">
-                    <p class="nom_article ">
+                    <img src="<?php echo $row['images']; ?>">
+                </div>
+                <div class="info m-20 ">
+                    <h3 class="nom_articles m-20">
                         <?php
                         echo $row['titre'];
-                        ?></p>
-                 <img src="images/<?php echo $row['images']; ?>">
-                    <div class="info m-20 ">
-
-                        <button class="button_liste m-20"><a class="plus_info p-20 block" href="article.php?idArticles=<?php echo $row['idArticles']; ?> ">plus d'infos</a></button>
-                    </div>
+                        ?>
+                    </h3>
+                    <a href="article.php">
+                        <button class="lien">Voir plus</button>
+                    </a>
                 </div>
+
 
             </div>
 

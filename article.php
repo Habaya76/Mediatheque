@@ -1,4 +1,5 @@
 <?php require_once('header.php');
+require_once('emprunt.php');
 session_start();
 $db = new PDO('mysql:host=localhost;dbname=hbmedialbdd', 'root', 'root');
 $req = $db->prepare('SELECT * FROM articles WHERE idArticles = :idArticles');
@@ -12,7 +13,7 @@ $idusers = $_SESSION['idusers'];
 $disponibilite = $_SESSION['status'];
 ?>
 
-<articles class="liste_livre">
+<article class="liste_livre">
     <div class="info_article ">
 
         <div class="tout flex m-20">
@@ -20,15 +21,15 @@ $disponibilite = $_SESSION['status'];
                 <img src="images/<?php echo $resultat['images']; ?>" width="400px">
             </div>
             <div class="resu m-20">
-                <p class="nom_article ">
+                <h3 class="nom_article ">
                     <?php
                     echo $resultat['status'];
-                    ?></p>
+                    ?></h3>
 
-                <p class="nom_article ">
+                <h3 class="nom_article ">
                     <?php
                     echo $resultat['titre'];
-                    ?></p>
+                    ?></h3>
 
                 <?php
                 echo $resultat['resume'];
@@ -40,6 +41,6 @@ $disponibilite = $_SESSION['status'];
                 </div>
             </div>
         </div>
-</articles>
+</article>
 
 <?php require_once('footer.php'); ?>
