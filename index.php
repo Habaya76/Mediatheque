@@ -5,7 +5,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $resultats = $db->query('SELECT * From articles ', PDO::FETCH_ASSOC);
 
 ?>
-<articles class="articles_index">
+<article class="articles_index">
 
     <div class="classement">
         <div class="mon_element">
@@ -32,6 +32,7 @@ $resultats = $db->query('SELECT * From articles ', PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
+        <?php if (isset($_SESSION['idusers'])) : ?>
         <div class="info_article flex">
             <?php
             while ($row = $articles->fetch()) :
@@ -47,7 +48,7 @@ $resultats = $db->query('SELECT * From articles ', PDO::FETCH_ASSOC);
                             echo $row['titre'];
                             ?>
                         </h3>
-                        <a href="article.php">
+                        <a href="article.php?idArticles=<?= $row['idArticles']; ?>">
                             <button class="lien">Voir plus</button>
                         </a>
                     </div>
@@ -57,9 +58,10 @@ $resultats = $db->query('SELECT * From articles ', PDO::FETCH_ASSOC);
             <?php endwhile ?>
 
         </div>
+        <?php endif; ?>
     </div>
 
 
-</articles>
+</article>
 
 <?php require_once('footer.php'); ?>

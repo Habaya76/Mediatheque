@@ -195,7 +195,8 @@ body {
 .articles_index .classement img,
 .article_music .info_music img,
 .article_cinema .info_cinema img,
-.article_presse .info_presse img {
+.article_presse .info_presse img,
+.article_article .info_article img {
     width: 250px;
     height: 300px;
     -webkit-transform: scale(1);
@@ -209,7 +210,8 @@ body {
 .articles_index .classement img:hover,
 .article_music .info_music img:hover,
 .article_cinema .info_cinema img:hover,
-.article_presse .info_presse img:hover {
+.article_presse .info_presse img:hover,
+.article_article .info_article img:hover{
     -webkit-transform: scale(1.3);
     transform: scale(1.3);
 }
@@ -221,7 +223,8 @@ body {
 .article_music .info_music,
 .article_cinema .info_cinema,
 .article_presse .info_presse,
-.article_contact .info_contact {
+.article_contact .info_contact,
+.article_article .info_article {
     margin-top: 80px;
     margin-bottom: 100px;
     margin-left: 100px;

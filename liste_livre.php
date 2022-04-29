@@ -24,7 +24,7 @@ $resultats = $db->query('SELECT * From articles where idcategories = 3', PDO::FE
                         echo $row['titre'];
                         ?>
                     </h3>
-                    <a href="article.php">
+                    <a href="article.php?idArticles=<?= $row['idArticles']; ?>">
                         <button class="lien">Voir plus</button>
                     </a>
                 </div>
